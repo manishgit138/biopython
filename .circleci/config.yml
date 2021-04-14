@@ -5,11 +5,10 @@
 #
 # This uses a CircleCI provided Python image, see
 # https://circleci.com/developer/images/image/cimg/python
-#done
 
 version: 2.1
-#orbs:
-#  codecov: codecov/codecov@1.0.2
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   build:
     docker:
@@ -74,4 +73,3 @@ jobs:
     resource_class: arm.medium
     steps:
       - run: uname -a
-  
