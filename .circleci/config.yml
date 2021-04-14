@@ -68,3 +68,10 @@ jobs:
             coverage xml
       - codecov/upload:
           file: biopython-*/Tests/coverage.xml
+  
+build_arm64:
+  machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    steps:
+      - run: uname -a
