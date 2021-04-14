@@ -68,7 +68,7 @@ jobs:
             coverage xml
       - codecov/upload:
           file: biopython-*/Tests/coverage.xml
-  build_arm64:
+  build-medium:
     machine:
       image: ubuntu-2004:202101-01
     resource_class: arm.medium
