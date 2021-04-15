@@ -8,25 +8,12 @@
 
 version: 2.1
 orbs:
-  codecov: codecov/codecov@1.0.5
+  codecov: codecov/codecov@1.0.2
 jobs:
   build:
     docker:
       - image: cimg/python:3.9
-  build-medium:
-    machine:
-      image: ubuntu-2004:202101-01
-    resource_class: arm.medium
     steps:
-      - test
-commands:
-  store-coverage-data:
-    steps:
-      - store_artifacts:
-          path: biopython-*
-  test:  
-    steps:
-      - run: uname -a
       - checkout
       - run:
           name: Combine precommit config and python versions for caching
@@ -80,6 +67,12 @@ commands:
             coverage xml
       - codecov/upload:
           file: biopython-*/Tests/coverage.xml
+  build-medium:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    steps:
+      - run: uname -a
 workflows:
   version: 2
   build_and_test:
