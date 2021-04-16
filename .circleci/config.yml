@@ -70,9 +70,16 @@ jobs:
   build-medium:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: arm.large
     steps:
-      - run: uname -a
+      - checkout
+      - run:
+          name: Setup Qemu
+          command: |
+            docker run --rm --privileged multiarch/qemu-user-static:register --reset
+      - run:
+          name: Setup Qemu
+          command: |
+            docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2014_aarch64 /bin/sh -c cd /biopython && ls && uname -a
 workflows:
   version: 2
   build_and_test:
