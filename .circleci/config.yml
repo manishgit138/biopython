@@ -76,13 +76,12 @@ jobs:
           name: Setup Qemu
           command: |
             docker run --rm --privileged multiarch/qemu-user-static:register --reset
-      - run:
-          name: Setup Qemu
-          command: |
+      - run: |
+            docker run --rm --privileged multiarch/qemu-user-static:register --reset
             docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2014_aarch64 /bin/sh -c cd /biopython && ls && uname -a
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      #- build
       - build-medium
