@@ -79,7 +79,7 @@ jobs:
       - run: |
             docker run -it --rm --privileged tonistiigi/binfmt --install all
             #docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2014_aarch64 /bin/sh -c ls && uname -a
-            docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws quay.io/pypa/manylinux2014_aarch64 bash -exc uname -m
+            docker run --rm -v `pwd`:/ws:rw --workdir=/ws quay.io/pypa/manylinux2014_aarch64 bash -exc uname -m
 workflows:
   version: 2
   build_and_test:
