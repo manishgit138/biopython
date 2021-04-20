@@ -77,7 +77,8 @@ jobs:
           command: |
             docker run --rm --privileged multiarch/qemu-user-static:register --reset
       - run: |
-            docker run -it --rm --privileged tonistiigi/binfmt --install all
+            #docker run -it --rm --privileged tonistiigi/binfmt --install all
+            docker run --rm --privileged multiarch/qemu-user-static:register --reset
             #docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2014_aarch64 /bin/sh -c ls && uname -a
             docker run --rm -v `pwd`:/ws:rw --workdir=/ws quay.io/pypa/manylinux2014_aarch64 bash -exc uname -m
 workflows:
