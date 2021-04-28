@@ -78,7 +78,7 @@ jobs:
             docker run --rm --privileged multiarch/qemu-user-static:register --reset
       - run: |
             docker run --rm --privileged multiarch/qemu-user-static:register --reset
-            docker run --rm -v "$(pwd)":/io $quay.io/pypa/${images} /io/wheel/build.sh
+            docker run --rm -v "$(pwd)":/io $quay.io/pypa/manylinux2014_aarch64 /io/wheel/build.sh
             #docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2014_aarch64 /bin/sh -c ls && uname -a
             #docker run --rm -v `pwd`:/ws:rw --workdir=/ws quay.io/pypa/manylinux2014_aarch64 bash -exc uname -m
 workflows:
