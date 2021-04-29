@@ -78,13 +78,12 @@ jobs:
             sudo docker run -it --rm --privileged multiarch/qemu-user-static --reset --credential yes --persistent yes
       - run: |
             docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2014_aarch64 /bin/sh -c cd biopython && \
-            python3 --version
-            python setup.py sdist --formats=gztar && \
+            python3 setup.py sdist --formats=gztar && \
             echo "Built tar-ball, will now use that to test manifest..." && \
             tar -zxvf dist/biopython-*.tar.gz && cd biopython-*/ && \
-            python setup.py bdist_wheel && \
+            python3 setup.py bdist_wheel && \
             echo "Built wheel and installing it..." && \
-            python -m pip install dist/biopython-*.whl && \
+            python3 -m pip install dist/biopython-*.whl && \
             echo "Biopython should now be installed" && \
             cd biopython-*/Tests/ && \
             rm -rf coverage.xml && \
