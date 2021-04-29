@@ -75,13 +75,14 @@ jobs:
       - run:
           name: Setup Qemu
           command: |
-            docker run --rm --privileged multiarch/qemu-user-static:register --reset
+            sudo docker run -it --rm --privileged multiarch/qemu-user-static --reset --credential yes --persistent yes
+            #docker run --rm --privileged multiarch/qemu-user-static:register --reset
       #- run: |
       #      docker run --rm  --entrypoint=cat weaveworks/weaveexec@sha256:d19ca4e518ee3d52bfbd6c6b8fb90c258622462ff8386de39e15b0fa6edb02e5 /usr/bin/weaveutil > weaveutil_arm64
       - run: |
-            sudo apt update
-            sudo apt install -y qemu qemu-user-static qemu-user binfmt-support
-            docker run --rm --privileged multiarch/qemu-user-static:register --reset
+            #sudo apt update
+            #sudo apt install -y qemu qemu-user-static qemu-user binfmt-support
+            #docker run --rm --privileged multiarch/qemu-user-static:register --reset
             docker run --rm arm64v8/ubuntu:xenial uname -m
       - run: |
             docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2010_x86_64 /bin/sh -c ls && uname -m
