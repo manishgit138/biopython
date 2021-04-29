@@ -77,6 +77,8 @@ jobs:
           command: |
             sudo docker run -it --rm --privileged multiarch/qemu-user-static --reset --credential yes --persistent yes
       - run: |
+            docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2014_aarch64 bash -exc `uname -m`
+      - run: |
             docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2014_aarch64 /bin/sh -c cd biopython && cat .pre-commit-config.yaml > pre-commit-deps.txt && \
             python -VV >> pre-commit-deps.txt
 workflows:
