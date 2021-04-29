@@ -78,8 +78,9 @@ jobs:
             sudo docker run -it --rm --privileged multiarch/qemu-user-static --reset --credential yes --persistent yes
       - run: |
             docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2014_aarch64 /bin/sh -c cd biopython && \
-            pip3 install coverage codecov numpy scipy mmtf-python mysqlclient mysql-connector-python rdflib networkx matplotlib reportlab && \
-            pip3 install wheel
+            sudo yum install -y update && sudo yum install -y python-setuptools
+            python3 -m pip install coverage codecov numpy scipy mmtf-python mysqlclient mysql-connector-python rdflib networkx matplotlib reportlab && \
+            python3 -m pip install wheel
             python3 setup.py sdist --formats=gztar && \
             echo "Built tar-ball, will now use that to test manifest..." && \
             tar -zxvf dist/biopython-*.tar.gz && cd biopython-*/ && \
