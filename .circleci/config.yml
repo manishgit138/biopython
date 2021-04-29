@@ -78,10 +78,7 @@ jobs:
             sudo docker run -it --rm --privileged multiarch/qemu-user-static --reset --credential yes --persistent yes
       - run: |
             docker run --rm -v `pwd`:/biopython quay.io/pypa/manylinux2014_aarch64 /bin/sh -c cd biopython && \
-            cat .pre-commit-config.yaml > pre-commit-deps.txt && \
-            python -VV >> pre-commit-deps.txt && \
-            python --version && pip install pre-commit && pre-commit install && pre-commit install-hooks && \
-            pre-commit run -a && python setup.py sdist --formats=gztar && \
+            python setup.py sdist --formats=gztar && \
             echo "Built tar-ball, will now use that to test manifest..." && \
             tar -zxvf dist/biopython-*.tar.gz && cd biopython-*/ && \
             python setup.py bdist_wheel && \
